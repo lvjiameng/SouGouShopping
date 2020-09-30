@@ -176,4 +176,12 @@ function countPrice() {
     }
   });
   $(".cart-total").html("￥" + countPrice);
-}
+} // 结算栏
+
+
+$(".cart-info-placeholder").css({
+  position: "sticky",
+  bottom: "0px",
+  background: "#fff",
+  boxShadow: "0px -2px 7px 0 rgba(0,0,0,0.1)"
+});

@@ -38,6 +38,8 @@ if (localStorage.getItem("uid")) {
 
 var uid = localStorage.getItem("uid");
 var allList = "http://jx.xuzhixiang.top/ap/api/allproductlist.php";
+var cartAPI = "http://jx.xuzhixiang.top/ap/api/cart-list.php";
+var cartList;
 $.ajax({
   url: allList,
   type: "GET",
@@ -75,8 +77,28 @@ $.ajax({
       location.href = "./detail.html?pid=".concat(pid);
     });
   }
+});
+$.ajax({
+  url: cartAPI,
+  type: "GET",
+  data: {
+    id: uid
+  },
+  success: function success(res) {
+    // console.log(res.data)
+    cartList = res.data;
+    countNums();
+  }
 }); // 跳转购物车
 
 $(".cart").click(function () {
   location.href = "../pages/cart.html";
-});
+}); // 商品总数
+
+function countNums() {
+  var countNum = 0;
+  cartList.forEach(function (v) {
+    countNum += parseInt(v.pnum);
+  });
+  $(".cart span").html("(" + countNum + "件)"); // console.log(countNum)
+}

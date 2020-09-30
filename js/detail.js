@@ -44,7 +44,9 @@ function addCart() {
         pid: pid,
         pnum: pnum
       },
-      success: function success(res) {// console.log(res)
+      success: function success(res) {
+        // console.log(res)
+        alert("成功添加购物车");
       }
     });
   });
